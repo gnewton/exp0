@@ -1,0 +1,30 @@
+
+package main
+
+import(
+"github.com/icza/gowut/gwu"
+)
+
+func main(){
+// Create and build a window
+	win := gwu.NewWindow("main", "Test GUI Window")
+	win.Style().SetFullWidth()
+	win.SetHAlign(gwu.HACenter)
+	win.SetCellPadding(10)
+
+	p := gwu.NewHorizontalPanel()
+	p.Style().SetBorder2(1, gwu.BrdStyleSolid, gwu.ClrBlack)
+	p.SetCellPadding(10)
+	win.Add(p)
+
+	tabs := gwu.NewTabPanel()
+	p.Add(tabs)
+	tabs.AddString("NEW", gwu.NewLabel("Click to add new one"))
+	tabs.AddString("mmm", gwu.NewLabel("asdf asf asf asf asf asdf asf asf asdf asf asf asf asf asf af asf"))
+
+// Create and start a GUI server (omitting error check)
+	server := gwu.NewServer("guitest", "localhost:8081")
+	server.SetText("Test GUI App")
+	server.AddWin(win)
+	server.Start("") // Also opens windows list in browser
+}
